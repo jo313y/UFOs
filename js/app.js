@@ -16,3 +16,20 @@ function buildTable(data) {
         );
     });
 }
+
+function handleClick() {
+    // Grab the datetime value from the filter
+    let date = d3.select("#datetime").property("value");
+    let filteredData = tableData;
+  
+    if (date) {
+         filteredData = filteredData.filter(row => row.datetime === date);
+    }
+  
+    buildTable(filteredData);
+  }
+  
+  d3.selectAll("#filter-btn").on("click", handleClick);
+
+  buildTable(tableData);
+
